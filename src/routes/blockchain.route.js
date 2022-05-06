@@ -20,9 +20,11 @@ blockchainRouter.get('/:name', async (req, res) => {
     res.status(200).send(blockchainData);
 })
 
+// If NAME is being passed in the body, we cannot update
 blockchainRouter.patch('/blockchain/:name', async (req, res) => {
-    const blockchainName = req.params.name;
-    if(blockchainName) {
+    const blockchainBodyName = req.body.name;
+    // check if the body has name
+    if(blockchainBodyName) {
         res.status(500).send('Cannot update Blockchain name')
         return
     }
